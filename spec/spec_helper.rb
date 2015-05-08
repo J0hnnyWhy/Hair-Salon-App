@@ -1,8 +1,8 @@
-require("rspec")
-require("pg")
-require("stylists")
+require('rspec')
+require('pg')
+require('stylists')
 require('clients')
-require("pry")
+require('pry')
 
 DB = PG.connect({:dbname => 'hair_salon_test'})
 
