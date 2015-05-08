@@ -33,3 +33,28 @@ describe('adding a new stylist', {:type => :feature}) do
   end
 end
 
+describe('the path to viewing details of individual stylist', {:type => :feature}) do
+  it('allows user to click on stylist name view clients') do
+    test_stylist = Stylists.new({:stylist => 'Sue', :id => nil})
+    test_stylist.save()
+    test_client = Clients.new({:name => 'Mean Lady', :stylist_id => test_stylist.id()})
+    test_client.save()
+    visit('/stylists')
+    click_link(test_stylist.stylist())
+    expect(page).to have_content(test_client.name)
+  end
+end
+
+describe('path to add a new client', {:type => :feature}) do
+  it('allows the user to add a new client') do
+    test_stylist = Stylists.new({:stylist => 'Jocelyn', :id => nil})
+    test_stylist.save()
+    visit("/stylists/#{test_stylist.id()}")
+
+    click_link('Add New Client')
+    fill_in('name', :with => 'Jim')
+    click_button('Add Client')
+    expect(page).to have_content('Success!')
+
+  end
+end
