@@ -23,4 +23,24 @@ describe(Stylists) do
       expect(stylist.id()).to(be_an_instance_of(Fixnum))
     end
   end
+
+  describe("#==") do
+    it("is the same stylist if they have the same name") do
+      stylist1 = Stylists.new({:name => "Debbie", :id => nil})
+      stylist2 = Stylists.new({:name => "Debbie", :id => nil})
+      expect(stylist1).to(eq(stylist2))
+    end
+  end
+
+
+  describe(".find") do
+    it('returns a stylist by their ID') do
+      test_stylist = Stylists.new({:name => "Debbie", :id => nil})
+      test_stylist.save()
+      test_stylist2 = Stylists.new({:name => "Mike", :id => nil})
+      test_stylist2.save()
+      expect(Stylists.find(test_stylist.id())).to(eq(test_stylist))
+    end
+  end
+
 end
