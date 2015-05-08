@@ -17,4 +17,14 @@ attr_reader(:person, :stylist_id)
     clients
   end
 
+
+  define_method(:==) do |another_client|
+    self.person().==(another_client.person()).&(self.stylist_id().==(another_client.stylist_id()))
+  end
+
+  define_method(:save) do
+    DB.exec("INSERT INTO clients (person, list_id) VALUES ('#{@person}', #{@list_id});")
+  end
+
+
 end
