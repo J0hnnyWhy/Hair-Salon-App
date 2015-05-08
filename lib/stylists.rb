@@ -46,6 +46,7 @@ class Stylists
 	      stylist_clients.push(Clients.new({:name => name, :stylist_id => stylist_id}))
 	    end
 	    stylist_clients
+	    # binding.pry
 	end
 
 end

@@ -31,3 +31,17 @@ post('/stylists') do
   new_stylist.save()
   erb(:success)
 end
+
+get('/stylists/:id/clients/new') do
+  @stylist = Stylists.find(params.fetch("id").to_i())
+  erb(:client_form)
+end
+
+post('/client') do
+  name = params.fetch("name")
+  stylist_id = params.fetch("stylist_id").to_i()
+  @stylist = Stylists.find(stylist_id)
+  @client = Clients.new(:name => name, :stylist_id => stylist_id)
+  @client.save()
+  erb(:success)
+end

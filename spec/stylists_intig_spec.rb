@@ -13,6 +13,16 @@ RSpec.configure do |config|
   end
 end
 
+describe('path to viewing all stylists', {:type => :feature}) do
+  it('allows user to click link and view all stylists') do
+    stylis = Stylists.new({:stylist => 'Bob', :id => nil})
+    stylis.save()
+    visit('/')
+    click_link('View All Stylists')
+    expect(page).to have_content(stylis.stylist())
+  end
+end
+
 describe('adding a new stylist', {:type => :feature}) do
   it('allows a user to click a stylist to see the clients') do
     visit('/')
@@ -22,3 +32,4 @@ describe('adding a new stylist', {:type => :feature}) do
     expect(page).to have_content('Success!')
   end
 end
+
