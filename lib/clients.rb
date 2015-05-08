@@ -1,8 +1,8 @@
 class Clients
-attr_reader(:person, :stylist_id)
+attr_reader(:name, :stylist_id)
 
   define_method(:initialize) do |attributes|
-    @person = attributes.fetch(:person)
+    @name = attributes.fetch(:name)
     @stylist_id = attributes.fetch(:stylist_id)
   end
 
@@ -10,16 +10,16 @@ attr_reader(:person, :stylist_id)
     returned_clients = DB.exec("SELECT * FROM clients;")
     clients = []
     returned_clients.each() do |client|
-      person = client.fetch("person")
+      person = client.fetch("name")
       stylist_id = client.fetch("stylist_id").to_i() 
-      clients.push(Clients.new({:person => person, :stylist_id => stylist_id}))
+      clients.push(Clients.new({:name => person, :stylist_id => stylist_id}))
     end
     clients
   end
 
 
   define_method(:==) do |another_client|
-    self.person().==(another_client.person()).&(self.stylist_id().==(another_client.stylist_id()))
+    self.name().==(another_client.name()).&(self.stylist_id().==(another_client.stylist_id()))
   end
 
   define_method(:save) do

@@ -9,17 +9,17 @@ describe(Clients) do
     end
   end
 
-   describe("#person") do
+   describe("#name") do
     it("lets you give it a persons name") do
-      test_client = Clients.new({:person => "Skinny Guy", :stylist_id => 1})
-      expect(test_client.person()).to(eq("Skinny Guy"))
+      test_client = Clients.new({:name => "Skinny Guy", :stylist_id => 1})
+      expect(test_client.name()).to(eq("Skinny Guy"))
     end
   end
 
   describe("#==") do
     it("is the same client if it is the same person") do
-      client1 = Clients.new({:person=> "Funny Girl", :stylist_id => 1})
-      client2 = Clients.new({:person => "Funny Girl", :stylist_id => 1})
+      client1 = Clients.new({:name=> "Funny Girl", :stylist_id => 1})
+      client2 = Clients.new({:name => "Funny Girl", :stylist_id => 1})
       expect(client1).to(eq(client2))
     end
   end

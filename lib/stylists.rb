@@ -3,7 +3,7 @@ class Stylists
   attr_reader(:stylist, :id)
 
   define_method(:initialize) do |attributes|
-    @name = attributes.fetch(:stylist)
+    @stylist = attributes.fetch(:stylist)
     @id = attributes.fetch(:id)
   end
 
@@ -19,7 +19,7 @@ class Stylists
     end
 # binding.pry
     define_method(:save) do
-    result = DB.exec("INSERT INTO stylists (stylist) VALUES ('#{@name}') RETURNING id;")
+    result = DB.exec("INSERT INTO stylists (stylist) VALUES ('#{@stylist}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
 
