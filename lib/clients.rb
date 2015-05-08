@@ -23,7 +23,7 @@ attr_reader(:person, :stylist_id)
   end
 
   define_method(:save) do
-    DB.exec("INSERT INTO clients (person, list_id) VALUES ('#{@person}', #{@list_id});")
+    DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@person}', #{@stylist_id});")
   end
 
 
